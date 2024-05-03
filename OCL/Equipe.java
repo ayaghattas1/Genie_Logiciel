@@ -1,7 +1,6 @@
 package OCL;
 
 import java.util.Objects;
-
 public class Equipe {
 
     private String nomEquipe;
@@ -31,12 +30,13 @@ public class Equipe {
 
     // Vérification des contraintes OCL (à intégrer à l'aide d'une bibliothèque OCL)
     @OCL(inv="self.chefEquipe <> null and self.chefEquipe.statut = \"Actif\"")
+    
     public boolean validerContraintes() {
         // Contrainte : Une équipe ne peut pas être sans chef d'équipe
         if (chefEquipe == null) {
             throw new IllegalArgumentException("Un chef d'équipe ne peut pas être null.");
         }
-                // Vérifier si l'équipe a déjà un chef d'équipe
+        // Vérifier si le chef d'équipe à assigner est actif
         if (!chefEquipe.getStatut().equals("Actif")) {
             throw new IllegalStateException("Ce chef d'équipe est en congé ou hors ligne, il doit être actif.");
         }
